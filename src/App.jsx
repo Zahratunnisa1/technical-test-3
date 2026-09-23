@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 
 // Issue 1: Inline API key (security issue)
-const API_KEY = 'sk-1234567890abcdef'
 
 function App() {
   // Issue 2: State management bisa lebih baik
@@ -139,10 +138,6 @@ function App() {
       <div className="stats">
         <p>Total: {stats.total} | Active: {stats.active} | Completed: {stats.completed}</p>
       </div>
-      
-      {/* Issue 16: Debug code yang tertinggal */}
-      {console.log('Rendering with todos:', todos)}
-      {console.log('API Key:', API_KEY)}
     </div>
   )
 }
