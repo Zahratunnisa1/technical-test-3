@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 
 // Issue 1: Inline API key (security issue)
 
@@ -53,15 +53,17 @@ useEffect(() => {
   }
   
   // Issue 8: Logic filtering yang bisa dipindah ke useMemo
-  const getFilteredTodos = () => {
-    if (filter === 'active') {
-      return todos.filter(todo => !todo.completed)
-    }
-    if (filter === 'completed') {
-      return todos.filter(todo => todo.completed)
-    }
-    return todos
+  const filteredTodos = useMemo(() => {
+  if (filter === 'active') {
+    return todos.filter(todo => !todo.completed)
   }
+
+  if (filter === 'completed') {
+    return todos.filter(todo => todo.completed)
+  }
+
+  return todos
+}, [todos, filter])
   
   // Issue 9: Calculation yang tidak perlu di setiap render
   const stats = {
@@ -115,7 +117,7 @@ useEffect(() => {
       
       <div className="todo-list">
         {/* Issue 13: Tidak ada handling untuk empty state */}
-        {getFilteredTodos().map((todo) => (
+        {filteredTodos.map((todo) => (
           // Issue 14: Key menggunakan index bisa lebih baik dengan ID
           <div key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''}`}>
             <input 
