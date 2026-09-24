@@ -79,7 +79,8 @@ const stats = useMemo(() => ({
       
       {/* Issue 11: Tidak ada label untuk accessibility */}
       <div className="input-section">
-        <input 
+        <input
+          id="todo-input" 
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
