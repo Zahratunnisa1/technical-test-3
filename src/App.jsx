@@ -9,13 +9,21 @@ function App() {
   const [filter, setFilter] = useState('all')
   
   // Issue 3: useEffect tanpa dependency array yang tepat
-  useEffect(() => {
-    // Load from localStorage
+useEffect(() => {
+  try {
     const saved = localStorage.getItem('todos')
+
     if (saved) {
-      setTodos(JSON.parse(saved))
+      const parsedTodos = JSON.parse(saved)
+
+      if (Array.isArray(parsedTodos)) {
+        setTodos(parsedTodos)
+      }
     }
-  }, [])
+  } catch (error) {
+    console.error('Failed to load todos from localStorage:', error)
+  }
+}, [])
   
   // Issue 4: useEffect yang terlalu sering run
 useEffect(() => {
