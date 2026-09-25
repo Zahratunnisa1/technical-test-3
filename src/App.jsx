@@ -4,7 +4,23 @@ import { useState, useEffect, useMemo } from 'react'
 
 function App() {
   // Issue 2: State management bisa lebih baik
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(() => {
+  try {
+    const saved = localStorage.getItem('todos')
+
+    if (saved) {
+      const parsedTodos = JSON.parse(saved)
+
+      if (Array.isArray(parsedTodos)) {
+        return parsedTodos
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load todos from localStorage:', error)
+  }
+
+  return []
+})
   const [input, setInput] = useState('')
   const [filter, setFilter] = useState('all')
   
