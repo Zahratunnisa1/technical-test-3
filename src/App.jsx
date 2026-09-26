@@ -124,25 +124,25 @@ const stats = useMemo(() => ({
       </div>
       
       {/* Issue 12: Inline styles (inconsistent dengan CSS file) */}
-      <div style={{ marginBottom: '20px', display: 'flex', gap: '10px' }}>
-        <button 
+      <div className="filter-buttons">
+        <button
+          className={filter === 'all' ? 'active' : ''}
           onClick={() => setFilter('all')}
-          style={{ background: filter === 'all' ? '#28a745' : '#007bff' }}
         >
           All
         </button>
-        <button 
+        <button
+          className={filter === 'active' ? 'active' : ''}
           onClick={() => setFilter('active')}
-          style={{ background: filter === 'active' ? '#28a745' : '#007bff' }}
         >
           Active
         </button>
-        <button 
-          onClick={() => setFilter('completed')}
-          style={{ background: filter === 'completed' ? '#28a745' : '#007bff' }}
-        >
-          Completed
-        </button>
+       <button
+        className={filter === 'completed' ? 'active' : ''}
+        onClick={() => setFilter('completed')}
+      >
+        Completed
+      </button>
       </div>
       
       <div className="todo-list">
