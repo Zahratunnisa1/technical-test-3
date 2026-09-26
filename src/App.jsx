@@ -147,8 +147,11 @@ const stats = useMemo(() => ({
       
       <div className="todo-list">
         {/* Issue 13: Tidak ada handling untuk empty state */}
-        {filteredTodos.map((todo) => (
+        {filteredTodos.length === 0 ? (
           // Issue 14: Key menggunakan index bisa lebih baik dengan ID
+              <p className="empty-state">No todos found.</p>
+        ) : (
+          filteredTodos.map((todo) => (
           <div key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''}`}>
           <input 
           type="checkbox"
@@ -165,7 +168,7 @@ const stats = useMemo(() => ({
       >
         Delete
       </button>
-          </div>
+          </div>)
         ))}
       </div>
       

@@ -114,3 +114,8 @@ button:hover {
 .filter-buttons button.active {
   background: #28a745;
 }
+
+.empty-state {
+  text-align: center;
+  padding: 20px;
+}
